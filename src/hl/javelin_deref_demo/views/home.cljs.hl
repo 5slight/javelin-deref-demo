@@ -1,0 +1,6 @@
+(ns javelin-deref-demo.views.home)
+
+(defelem view []
+  (print @(cell= "Testing in view 2"))
+  [(h2 "Home")
+   (p "test")])
