@@ -11,8 +11,10 @@
                  [org.clojure/clojure         "1.8.0"]
                  [secretary                   "1.2.3"]
                  [io.vertx/clojure-api        "1.0.4"]
-                 [pandeiro/boot-http          "0.7.3"]]
- :source-paths #{"src/cljs" "src/hl"}
+
+                 [pandeiro/boot-http          "0.7.3"]
+                 [ring/ring-core              "1.5.0"]]
+ :source-paths #{"src/cljs" "src/hl" "serve"}
  :asset-paths  #{"assets"})
 
 (require
@@ -25,6 +27,10 @@
   "Build for development with source maps."
   []
   (comp
+   (serve
+        :port    8000
+        :reload  true
+        :handler `javelin-deref-demo.serve/main)
    (watch)
    (speak)
    (reload)
